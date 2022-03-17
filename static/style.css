@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=WindSong:wght@400;500&display=swap');
+
+
+body {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+main {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+}
+
+.img-ct {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image {   
+    width: 50vh;
+    position: absolute;
+    bottom: 30%;
+}
+
+.image:first-child {
+    width: 56vh;
+    height: 56vh;
+}
+
+.content {
+    position: absolute;
+    top: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    font-family: 'WindSong', cursive;
+    font-size: 5rem;
+    color: #273c75;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+}
+
+.searchbar {
+    width: 79vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.searchbar input {
+    width: 60vh;
+    height: 6vh;
+    border: none;
+    background-color:  #dcdde1;
+    border-radius: 12px;
+    text-align: center;
+    font-family: "Fredoka", sans-serif;
+    color: #273c75;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.searchbar input::placeholder {
+    text-align: center;
+    font-family: "Fredoka", sans-serif;
+    color: #273c75;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.searchbar button {
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #273c75;
+    height: 6vh;
+    width: 17vh;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #fff;
+    font-family: "Fredoka", sans-serif;
+}
+
+.searchbar button:hover {
+    cursor: pointer;
+}
+
+.searchbar button svg {
+    width: 3vh;
+    height: 3vh;
+}
+
+.short {
+    width: 79vh;
+    background-color: #dcdde1;
+    margin-top: 2vh;
+    border-radius: 12px;
+    display: flex;
+    height: 10vh;
+    /* justify-content: center; */
+    align-items: center;
+
+}
+
+.short svg.globe {
+    width: 5vh;
+    height: 5vh;
+    stroke: #fff;
+    background-color: #273c75;
+    padding: 1vh;
+    border-radius: 100%;
+    margin-left: 2vh;
+}
+
+.short svg.clipboard {
+    stroke: #273c75;
+    width: 4vh;
+    height: 4vh;
+    cursor:pointer;
+    margin-left: auto;
+    margin-right: 2vh;
+}
+
+.short a {
+    text-decoration: none;
+    color: #273c75;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 15vh;
+    margin-top: 2vh;
+}
+
+.short a:hover {
+    text-decoration: underline;
+}
+
+.short .links {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    color: #718093;
+    
+}
+
+.short .links p {
+    margin-left: 20vh;
+    margin-top: -.2vh;
+}
+

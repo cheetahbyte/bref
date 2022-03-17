@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{url_for('static', path='style.css')}}" />
+  <title>Bref - powerful shortener</title>
+</head>
+
+<body>
+  <a href="https://github.com/cheetahbyte/bref" class="github-corner" aria-label="View source on GitHub"><svg width="80"
+      height="80" viewBox="0 0 250 250"
+      style="fill:#273c75; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path
+        d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+        fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path
+        d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+        fill="currentColor" class="octo-body"></path>
+    </svg></a>
+  <style>
+    .github-corner:hover .octo-arm {
+      animation: octocat-wave 560ms ease-in-out
+    }
+
+    @keyframes octocat-wave {
+
+      0%,
+      100% {
+        transform: rotate(0)
+      }
+
+      20%,
+      60% {
+        transform: rotate(-25deg)
+      }
+
+      40%,
+      80% {
+        transform: rotate(10deg)
+      }
+    }
+
+    @media (max-width:500px) {
+      .github-corner:hover .octo-arm {
+        animation: none
+      }
+
+      .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+      }
+    }
+  </style>
+  <main>
+    <div class="img-ct">
+      <img class="image" src="{{url_for('static', path='images/blob.svg')}}" />
+      <img class="image" src="{{url_for('static', path='images/shortener.svg')}}" />
+    </div>
+    <div class="content">
+      <h1>Bref</h1>
+
+      <form class="searchbar" method="post" action="/shorten">
+        <input name="url" type="url" required pattern="(https?://)?.+" placeholder="Enter your URL.." />
+        <button>
+          Shorten
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            style="--darkreader-inline-stroke: currentColor" data-darkreader-inline-stroke="">
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+            <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+            <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+          </svg>
+        </button>
+      </form>
+      {% if short %}
+      <div class="short">
+        <svg class="globe" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          data-darkreader-inline-stroke="" style="--darkreader-inline-stroke:currentColor;">
+          <path d="M15 21v-4a2 2 0 012-2h4"></path>
+          <path d="M7 4v2a3 3 0 003 2h0a2 2 0 012 2 2 2 0 004 0 2 2 0 012-2h3"></path>
+          <path d="M3 11h2a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v4"></path>
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        <div class="links">
+          <a class="link" id="copy" href="{{base_url}}/{{short}}">{{base_url}}/{{short}}</a>
+          <p>{{url}}</p>
+        </div>
+        <svg class="clipboard" id="clippy" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          data-darkreader-inline-stroke="" style="--darkreader-inline-stroke:currentColor;">
+          <path d="M16 4h2a2 2 0 012 2v4M8 4H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2v-2"></path>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          <path d="M21 14H11"></path>
+          <path d="M15 10l-4 4 4 4"></path>
+        </svg>
+        {% endif %}
+      </div>
+  </main>
+  <script>
+    function copy() {
+      let obj = document.getElementById("copy");
+      let url = obj.innerText;
+      // copy to clipboard
+      let el = document.createElement('textarea');
+      el.value = url;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert("Copied to clipboard!");
+    }
+
+    const doc = document.getElementById("clippy");
+    doc.addEventListener("click", copy);
+  </script>
+</body>
+
+</html>
