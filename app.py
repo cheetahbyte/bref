@@ -21,6 +21,9 @@ async def index(request: Request):
 
 @app.post("/shorten", response_class=HTMLResponse)
 async def shorten(request: Request, url=Form(...)):
+    base_url: str = request.url.scheme + "://" + request.url.hostname
+    if request.url.port:
+        base_url += ":" + str(request.url.port)
     short: str = "".join(random.choices(
         string.ascii_letters + string.digits, k=6))
     async with aiosqlite.connect("bref.db") as db:
@@ -29,11 +32,11 @@ async def shorten(request: Request, url=Form(...)):
             "select * from urls where url=?", (url,))
         result = await cursor.fetchone()
         if result:
-            return templates.TemplateResponse("index.html", {"request": request, "short": result[1], "url": result[0], "base_url": request.url.scheme + "://" + request.url.hostname + ":" + str(request.url.port)})
+            return templates.TemplateResponse("index.html", {"request": request, "short": result[1], "url": result[0], "base_url": base_url})
         # insert
         await db.execute("INSERT INTO urls (url, short) VALUES (?, ?)", (url, short))
         await db.commit()
-    return templates.TemplateResponse("index.html", {"request": request, "short": short, "url": url, "base_url": request.url.scheme + "://" + request.url.hostname + ":" + str(request.url.port)})
+    return templates.TemplateResponse("index.html", {"request": request, "short": short, "url": url, "base_url": base_url})
 
 
 @app.get("/shorten", status_code=308, response_class=RedirectResponse)
